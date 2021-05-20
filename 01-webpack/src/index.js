@@ -16,7 +16,7 @@ import { add, count } from './js/module3'
 import data from './json/data.json';
 
 // 引入样式
-// 目的：为了让webpack打包该资源
+// 目的：为了让 webpack 打包该资源
 import "./css/test.less";
 
 console.log(sum(1, 2, 3, 4));
