@@ -234,6 +234,27 @@ fn2(['y: 2', 'x: 1', 'z: 3']); */
         [1, 2, 3, 4] 将数字存储到变量a, b, c, d中，然后要设置默认值
         let [a = 3, b, c, d] = [1, 2, 3, 4];
 
-
+        交换两个变量的值
+        let a = 1;
+        let b = 2;
+        [b, a] = [a, b]
+        console.log(a, b)
     8. 对象解构赋值
+        1. 将对象中的属性，赋值为给一些变量
+        let obj = {name: 'zs', age: 18};
+        let {name, age} = obj;
+
+        2. 将对象中的属性，赋值给一些变量，要使用指定的变量名存储(n存储name的值，要使用a存储age的值)
+        let obj = {name: 'zs', age: 18};
+
+        let {name: n, age: a} = obj;
+
+        3. 将对象中的属性，赋值给一些变量，需要给变量添加一些默认值
+        let obj = {name: 'zs', age: 18};
+        let {name = 3, age = 5} = obj
 */
+/* var test = null;
+console.log(test); */
+
+var a = true;
+console.log(+a);
