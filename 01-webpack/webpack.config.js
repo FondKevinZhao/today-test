@@ -7,6 +7,8 @@ const {
     resolve
 } = require('path');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     // webpack 配置对象
     // entry：入口，指示webpack从哪个文件开始打包构建
@@ -31,6 +33,7 @@ module.exports = {
                     loader: "eslint-loader",
                 },
             },
+
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -71,17 +74,16 @@ module.exports = {
             },
 
             {
-                test: [/\.woff2?$/, /\.ttf$/, /\.map3$/, /\.map4$/],
-                // 会在输出原文件
-                type: "asset/resource",
-                // 权重更高
-                generator: {
-                    filename: "fonts/[hash][ext][query]",
-                },
+                type: 'asset/resource',
+                include: [/\.ttf$/, /\.woff$/, /\.woff2$/],
             },
         ],
     },
-
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./public/index.html",
+        }),
+    ],
     // plugins：插件，帮助webpack干活，功能更加强大
     // mode：模式(development, production)
     mode: 'development',

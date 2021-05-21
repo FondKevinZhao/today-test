@@ -19,6 +19,9 @@ import data from './json/data.json';
 // 目的：为了让 webpack 打包该资源
 import "./css/test.less";
 
+// 引入字体
+import "./css/iconfont.css"
+
 console.log(sum(1, 2, 3, 4));
 console.log(name);
 console.log(module2.name, module2.age);

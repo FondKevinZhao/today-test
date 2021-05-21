@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+#root {
+  width: 400px;
+  height: 400px;
+  background-color: yellowgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/1.jpeg?name=jack");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  background-image: url("../images/1.jpeg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
