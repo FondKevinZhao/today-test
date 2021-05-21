@@ -19,6 +19,7 @@ module.exports = {
         path: resolve(__dirname, '../build'),
         // 输出的文件名
         filename: 'js/mian.[contenthash:10].js',
+        assetModuleFilename: "images/[hash:10][ext][query]",
         // 加一个publicPath: 所有输出资源公共路径
         publicPath: '/',
     },
@@ -85,6 +86,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./public/index.html",
         }),
+        // 提取js中css成单独文件
+        new MiniCssExtractPlugin({
+            filename: "css/[name].[contenthash:10].css",
+        }),
+        // 压缩css
+        new CssMinimizerPlugin(),
     ],
     target: "browserslist",
     // plugins：插件，帮助webpack干活，功能更加强大

@@ -87,8 +87,9 @@ module.exports = {
         }),
     ],
     devServer: {
-        contentBase: './build', // 打包根路径
+        contentBase: resolve(__dirname, '../build'), // 打包根路径
         port: 8080, // 端口号
+        host: 'localhost',
         open: true, // 自动打开浏览器
         progress: true, // 进度条
     },
