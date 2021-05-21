@@ -9,6 +9,8 @@ const {
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 module.exports = {
     // webpack 配置对象
     // entry：入口，指示webpack从哪个文件开始打包构建
@@ -84,6 +86,13 @@ module.exports = {
             template: "./public/index.html",
         }),
     ],
+    devServer: {
+        contentBase: './build', // 打包根路径
+        port: 8080, // 端口号
+        open: true, // 自动打开浏览器
+        progress: true, // 进度条
+    },
+    target: "web",
     // plugins：插件，帮助webpack干活，功能更加强大
     // mode：模式(development, production)
     mode: 'development',
