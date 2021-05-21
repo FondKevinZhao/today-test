@@ -47,6 +47,38 @@ module.exports = {
                 use: ["style-loader", "css-loader", "less-loader"]
             },
 
+            {
+                test: /\.css$/,
+                // 多个loader得使用use
+                use: [
+                    // 执行顺序从下到上
+                    "style-loader", // 动态创建style标签，将js中的css代码添加style中
+                    "css-loader", // 将css以module方式整合到js中
+                ],
+            },
+
+            // 处理图片资源
+            {
+                test: [/\.jpe?g$/, /\.png$/, /\.gif$/],
+                // 会在输入原文件和base64处理的文件自由选择
+                type: "asset",
+                parser: {
+                    dataUrlCondition: {
+                        // 限制大小
+                        maxSize: 8 * 1024, // 8kb
+                    },
+                },
+            },
+
+            {
+                test: [/\.woff2?$/, /\.ttf$/, /\.map3$/, /\.map4$/],
+                // 会在输出原文件
+                type: "asset/resource",
+                // 权重更高
+                generator: {
+                    filename: "fonts/[hash][ext][query]",
+                },
+            },
         ],
     },
 
