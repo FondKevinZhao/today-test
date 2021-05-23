@@ -7,24 +7,10 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="example1"></div>
-  <div id="example2"></div>
-  <script src="./js/react.development.js"></script>
-  <script src="./js/react-dom.js"></script>
-  <script src="./js/babel.min.js"></script>
-  <script type="text/babel">
-    // 1. 工厂函数组件
-     function MyComponent1 () {
-       console.log('MyComponent1', this);
-       return (
-         <div>
-            <h1>工厂函数组件</h1>
-            <input type="text" />
-         </div>
-       );
-     }
-     // 渲染
-     ReactDOM.render(<MyComponent1/>, document.getElementById('example1'));
-  </script>
+   <script>
+     this.$http.post('http://vue.studyit.io/api/post', {}, { emulateJSON: true }).then(result => {
+       console.log(result.body)
+     })
+   </script>
 </body>
 </html>
