@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>05_components_composing</title>
 </head>
+
 <body>
 
   <div id="example"></div>
@@ -13,7 +15,55 @@
   <script type="text/javascript" src="../js/prop-types.js"></script>
   <script type="text/javascript" src="../js/babel.min.js"></script>
   <script type="text/babel">
+    class App extends React.Component {
+      state = {
+        todoList: ['吃饭', '睡觉', '敲代码']，
+      };
+
+      render() {
+        return (
+          <div>
+            <h1>TodoList</h1>
+            <AddTodo />
+            {/* 通过 props 方式给TodoList传递数据 */}
+            <TodoList todoList={this.state.todoList} />
+          </div>
+        )
+      }
+    }
+
+    class AddTodo extends React.Component {
+      render () {
+        return (
+          <div>
+            <input type="text" /> <button>Add #3</button>
+          </div>
+        )
+      }
+    }
+
+    class TodoList extends React.Component {
+      static propTypes = {
+        todoList: PropTypes.array.isRequired,
+      };
+
+      render () {
+        // 读取props
+        const { todoList } = this.props;
+        return (
+          <ul>
+            {todoList.map((todo, index) => {
+              // 遍历每项元素需要添加一个key属性
+              return <li key={index}>{todo}</li>
+            })}
+          </ul>
+        )
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('example'))
 
   </script>
 </body>
+
 </html>
