@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>05_components_composing</title>
+</head>
+
+<body>
+
+  <div id="example"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    // 1. 定义三个类组件
+    // 2. 先实现静态渲染
+    // 3. 实现动态渲染
+    class App extends React.Component {
+      state = {
+        doList: ['111', '222', '333'],
+      }
+      addtoDooo = (todoName) => {
+        const { doList } = this.state
+        this.setState({
+         doList: [todoName, ...doList]
+        })
+      }
+      render () {
+        return <div>
+          <h1>TodoList</h1>
+          <AddTodo addToDo = {this.addtoDooo} doList = {this.state.doList}/>
+          <TodoList doList = {this.state.doList}/>
+        </div>
+      }
+    }
+
+    class AddTodo extends React.Component {
+      state = {
+        todoName: ''
+      }
+         
+        
+      changeOne = (e) => {
+        const todoName = e.target.value.trim()
+        if(!todoName) {
+          alert('屌丝别乱来')
+          return
+        }
+        this.setState({
+          todoName,
+        })
+      }
+
+      changeClick = (e) => {
+        
+        
+        if(!this.state.todoName) {
+          alert('屌丝别乱来')
+          return
+        }
+        this.props.addToDo(this.state.todoName)
+        this.setState({
+          todoName: ''
+        })
+      }
+
+      render () {
+        const {length} = this.props.doList
+        const { todoName } = this.state
+        return <div>
+            <input type="text" onChange = { this.changeOne } value = {todoName}/>
+            <button onClick = {this.changeClick}>Add #{ length }</button>
+          </div>
+      }
+    }
+
+    class TodoList extends React.Component {
+      render () {
+        const { doList } = this.props
+        return <ul>
+          {doList.map((item, index) => {
+            return <li key={ index }>{ item }</li>
+          })}
+        </ul>
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('example'))
+  </script>
+</body>
+
+</html>

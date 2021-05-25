@@ -15,30 +15,78 @@
   <script type="text/javascript" src="../js/prop-types.js"></script>
   <script type="text/javascript" src="../js/babel.min.js"></script>
   <script type="text/babel">
+
     class App extends React.Component {
       state = {
-        todoList: ['吃饭', '睡觉', '敲代码']，
+        todoList: ['111', '2222', '33333'],
+      };
+
+      addTodo = (todo) => {
+        // 想要更新用户界面，必须调用 setState 方法
+        const { todoList } = this.state;
+        // 在React中，不建议(允许)直接修改数据
+        // todoList.unshit(todo);
+        this.setState({
+          todoList: [todo, ...todoList],
+        });
       };
 
       render() {
+        const { todoList } = this.state;
+
         return (
           <div>
             <h1>TodoList</h1>
-            <AddTodo />
-            {/* 通过 props 方式给TodoList传递数据 */}
-            <TodoList todoList={this.state.todoList} />
+            <AddTodo length={todoList.length} addTodo = {this.addTodo} />
+            {/* 通过 props 方式给 TodoList 传递数据 */}
+            <TodoList todoList={todoList} />
           </div>
         )
       }
-    }
+    };
 
+    // 受控组件
     class AddTodo extends React.Component {
-      render () {
+      static propTypes = {
+        length: PropTypes.number.isRequired,
+        addTodo: PropTypes.func.isRequired,
+      };
+
+      state = {
+        todo: '',
+      };
+
+      setTodo = (event) => {
+        const todo = event.target.value.trim();
+        this.setState({
+          todo,
+        });
+      };
+
+      add = () => {
+        const { todo } = this.state;
+        if (!todo) {
+          alert('请输入待办事项！');
+          return;
+        }
+        // 调用父组件的方法，从而更新父组件数据
+        this.props.addTodo(todo);
+        // 清空todo
+        this.setState({
+          todo: '',
+        });
+      };
+
+      render() {
+        const { length } = this.props;
+        const { todo }   = this.state;
+
         return (
           <div>
-            <input type="text" /> <button>Add #3</button>
+            <input type="text" onChange={this.setTodo} value={todo}/>  
+            <button onClick={this.add}>Add #{length}</button>
           </div>
-        )
+        );
       }
     }
 
@@ -47,7 +95,7 @@
         todoList: PropTypes.array.isRequired,
       };
 
-      render () {
+      render() {
         // 读取props
         const { todoList } = this.props;
         return (
@@ -55,14 +103,13 @@
             {todoList.map((todo, index) => {
               // 遍历每项元素需要添加一个key属性
               return <li key={index}>{todo}</li>
-            })}
+            })}  
           </ul>
-        )
+        );
       }
     }
 
-    ReactDOM.render(<App />, document.getElementById('example'))
-
+    ReactDOM.render(<App />, document.getElementById('example'));
   </script>
 </body>
 
