@@ -7,12 +7,15 @@
     <title>Document</title>
 </head>
 <body>
+    <did id="root"></did>
     <script src="./js/react.development.js"></script>
     <script src="./js/react-dom.js"></script>
     <script src="./js/babel.min.js"></script>
-
-    <script>
-        
+    
+    <script type="text/babel">
+        const h1 = <h1>Hello React</h1>
+        console.log(h1);
+        ReactDOM.render(h1, document.getElementById('root'));
     </script>
 </body>
 </html>
