@@ -13,15 +13,18 @@
     <script src="./js/babel.min.js"></script>
     
     <script type="text/babel">
-        // 创建类式组件
-        class MyComponent extends React.Component {
-            render() {
-                // render 是放在哪里的？是放在原型对象上的。
-                return <h2>我是用类定义的组件</h2>
+        // 1. 创建组件
+        class Weather extends React.Component {
+            constructor () {
+                super()
+            }
+            render () {
+                console.log(this);
+                return <h1>今天天气很炎热</h1>
             }
         }
-        // 渲染组件到页面
-        ReactDOM.render(<MyComponent/>, document.getElementById('root'))
+        // 2. 渲染
+        ReactDOM.render(<Weather/>, document.getElementById('root'))
     </script>
 </body>
 </html>
