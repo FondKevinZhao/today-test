@@ -13,11 +13,22 @@
   <script src="../js/react.development.js"></script>
   <script src="../js/react-dom.js"></script>
   <script src="../js/babel.min.js"></script>
+  
+  
   <script type="text/babel">
-    function MyComponent () {
-      return <h2>我是用函数定义的组件</h2>
-    }
-    ReactDOM.render(<MyComponent/>, document.getElementById('root'))
+  // 模拟一些数据
+  const data = ['Angular', 'React', 'Vue'];
+    // 1. 创建虚拟DOM
+    const VDOM = (
+      <div>
+        <h1>公公牛逼</h1>
+        <ul>
+          data
+        </ul>
+      </div>
+    )
+    // 2. 渲染虚拟DOM 到页面
+    ReactDOM.render(VDOM, document.getElementById('root'))
   </script>
 </body>
 </html>
