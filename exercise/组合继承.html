@@ -14,6 +14,16 @@
     // 父类
     // 阿吉估n 呀班咕噜尼n咋(Korea)
     // 瓦达西瓦 阿拉搭哦 阿姨洗爹以马斯
+
+    function Person (name, age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    Person.prototype.eat = function () {
+      console.log('eat')
+    }
+
     function Teacher(name, age, type, classNum) {
       Person.call(this, name, age);
       this.type = type;
@@ -21,12 +31,11 @@
     }
 
     Teacher.prototype = new Person();
-    Teacher.prototype.constructor = Teacher();
-    Teacher.prototype.do = function() {
-      console.log('aaa')
+    Teacher.prototype.constructor = Teacher;
+    Teacher.prototype.do = function () {
+      console.log('aaa');
     }
-
-    var teacher1 = new Teacher('haijing', 40, 'html5', 0223)
+    var teacher1 = new Teacher('haijing', 40, 'html5', 0223);
     console.log(teacher1);
     console.log(teacher1.eat);
     console.log(teacher1.constructor);
