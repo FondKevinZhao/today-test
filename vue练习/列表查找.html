@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" placeholder="请输入要查找的用户" v-model="value">
+    <ul>
+      <li v-for="(item, index) in persons" :key = item.id v-show="item.name.indexOf(value)!=-1">{{item.id}}--{{item.name}}--{{item.age}}</li>
+    </ul>
+    <button v-on:click="up">年龄升序</button>
+    <button @click="down">年龄降序</button>
+    <button @click="origin">原本排序</button>
+  </div>
+
+
+
+  <script src="./js/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        persons: [
+          {
+            id: 01,
+            name: 'tony',
+            age: 41,
+          },
+          {
+            id: 02,
+            name: 'tonny',
+            age: 21,
+          },
+          {
+            id: 03,
+            name: 'ytony',
+            age: 18,
+          },
+          {
+            id: 04,
+            name: 'tovny',
+            age: 45,
+          },
+          {
+            id: 05,
+            name: 'towny',
+            age: 31,
+          },
+          {
+            id: 06,
+            name: 'tony',
+            age: 41,
+          },
+          {
+            id: 07,
+            name: 'qtony',
+            age: 91,
+          },
+          {
+            id: 08,
+            name: 'toqny',
+            age: 46,
+          },
+        ],
+        value: '',
+      },
+      methods: {
+        up() {
+          this.persons = this.persons.sort(function (a, b) {
+            const age1 = a.age;
+            const age2 = b.age;
+            return age1 - age2;
+          })
+        },
+        down() {
+          this.persons = this.persons.sort(function (a, b) {
+            const age1 = a.age;
+            const age2 = b.age;
+            return age2 - age1;
+          })
+        },
+        origin() {
+          this.persons = this.persons.sort(function (a, b) {
+            const age1 = a.id;
+            const age2 = b.id;
+            return age1 - age2;
+          })
+        },
+      }
+    }
+    )
+  </script>
+</body>
+
+</html>
