@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="example">
+    <h2>1. 绑定监听</h2>
+    <button @click="handleClick1">button1</button>
+    <button @click="handleClick2()">button2</button>
+    <button @click="handleClick3(123, true)">button3</button>
+    <button @click="handleClick4(234, true, $event)">button4</button><br>
+    <p>{{ count }}</p>
+    <button @click="handleClick5">plus num</button>
+    <button @click="count++">plus num1</button>
+
+    <h2>2. 事件修饰符</h2>
+    <a href="http://www.baidu.com" @click.prevent="handleClick6">百度</a>
+    <a href="http://www.baidu.com" @click.stop="handleClick6">百度</a>
+
+    <h2>3. 按键修饰符</h2>
+    <input type="text" @keyup="handleKeyUp1">
+    <input type="text" @keyup.13="handleKeyUp2">
+    <input type="text" @keyup.enter="handleKeyUp2">
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#example",
+      data: {
+        count: 0,
+      },
+      methods: {
+        handleClick1() {
+          console.log(111, arguments);
+        },
+        handleClick2() {
+          console.log(222, arguments);
+        },
+        handleClick3() {
+          console.log(333, arguments);
+        },
+        handleClick4() {
+          console.log(444, arguments);
+        },
+        handleClick5() {
+          this.count++;
+        },
+        handleClick6(e) {
+          console.log(666, arguments);
+        },
+        handleClick7(){},
+        handleKeyUp1(e) {
+          if (e.keyCode === 13) {
+            console.log("enter");
+          }
+        },
+        handleKeyUp2() {
+          console.log("enter UP2");
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>
