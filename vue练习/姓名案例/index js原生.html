@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 需求：如果姓或名改了，全名跟着修改。  -->
+
+  <script>
+    let p = {
+      firstName: "张",
+      lastName: "三"
+    }
+    Object.defineProperty(p, 'fullName', {
+      set() { // fullName被修改时，get被调用，且set方法中的this是P，且set会收到修改的值
+
+      },
+      get() { // fullName被读取时，get被调用，且get方法中的this是P
+        return this.firstName + '-' + this.lastName
+      }
+    })
+  </script>
+
+</body>
+
+</html>
